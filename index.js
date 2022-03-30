@@ -4,7 +4,7 @@ require('dotenv').config();
 const Filme = require("./model/filmes");
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 3000;;
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded());
@@ -123,4 +123,4 @@ app.post("/deletar/:id", async (req, res) => {
   await filme.destroy();
   res.redirect("/");
 });
-app.listen(port || process.env.PORT, () => console.log(`Servidor rodando em http://localhost:${port}`));
+app.listen(port, () => console.log(`Servidor rodando em http://localhost:${port}`));
