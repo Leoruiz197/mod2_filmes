@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 require('dotenv').config();
 const Filme = require("./model/filmes");
+const db = require('./model/database');
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -123,4 +124,6 @@ app.post("/deletar/:id", async (req, res) => {
   await filme.destroy();
   res.redirect("/");
 });
+
+db.conectado();
 app.listen(port, () => console.log(`Servidor rodando em http://localhost:${port}`));
